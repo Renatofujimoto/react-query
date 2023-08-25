@@ -1,35 +1,43 @@
-
 "use client"
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { usePosts } from '@/app/hooks'
 
 export function PostList() {
-  const [postCount, setPostCount] = useState(10)
-  const { data, isLoading, isFetching } = usePosts(postCount)
+  const [page, setPage] = useState(0)
+  const { data, isLoading, isFetching, } = usePosts(page)
 
   if (isLoading) return <div>Loading</div>
 
   return (
     <section>
       <ul>
-        {data?.map((post, index) => (
-          <li key={post.id}>
-            <div>
-              <span>{index + 1}. </span>
-              <a href="#">{post.title}</a>
-            </div>
+        <span>Pagina atual: {page + 1}</span>
+        {data?.results?.map((character) => (
+          <li key={character.id}>
+            <p>{character.name}</p>
+            <Image width={50} height={50} src={character.image} />
           </li>
         ))}
       </ul>
-      {postCount <= 90 && (
-        <button
-          onClick={() => setPostCount(postCount + 10)}
-          disabled={isFetching}
-        >
-          {isFetching ? 'Loading...' : 'Show More'}
-        </button>
-      )}
+
+      <button
+        onClick={() => setPage((old) => Math.max(old - 1, 0))}
+        disabled={page === 1}
+      >
+        Pagina anterior
+      </button>
+
+      <button
+        onClick={() => setPage((old) => (data?.info.next ? old + 1 : old))}
+        disabled={!data?.info.next}
+      >
+        Pagina seguinte
+      </button>
+      {isFetching ? <span> Loading...</span> : null}{' '}
+
+
       <style jsx>{`
         section {
           padding-bottom: 20px;
@@ -42,7 +50,7 @@ export function PostList() {
           align-items: center;
           display: flex;
         }
-        a {
+        p {
           font-size: 14px;
           margin-right: 10px;
           text-decoration: none;

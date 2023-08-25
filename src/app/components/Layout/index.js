@@ -1,7 +1,8 @@
 "use client"
+
 import React from 'react'
 
-export const Layout = ({ children }) => {
+export function Layout({ children }) {
   return (
     <main>
       {children}

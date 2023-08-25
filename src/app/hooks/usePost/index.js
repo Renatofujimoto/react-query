@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
-const fetchPosts = async (limit) => {
-    const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts/?limit=${limit}`)
-    return data.filter((x) => x.id <= limit);
+const fetchPosts = async (page = 0) => {
+    const { data } = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`)
+    return data;
 }
 
-const usePosts = (limit) => useQuery({
-    queryKey: ["posts", limit],
-    queryFn: () => fetchPosts(limit),
+const usePosts = (page) => useQuery({
+    queryKey: ["characters", page],
+    queryFn: () => fetchPosts(page),
+    keepPreviousData: true,
 })
 
 export { usePosts, fetchPosts }
