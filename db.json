@@ -1,0 +1,79 @@
+{
+  "superheroes": [
+    {
+      "id": 1,
+      "name": "Batman",
+      "alterEgo": "Bruce Wayne"
+    },
+    {
+      "id": 2,
+      "name": "Superman",
+      "alterEgo": "Clark Kent"
+    },
+    {
+      "id": 3,
+      "name": "Wonder Woman",
+      "alterEgo": "Princess Diana"
+    },
+    {
+      "hero": {
+        "name": "renato"
+      },
+      "id": 4
+    },
+    {
+      "hero": {
+        "name": "Fernando"
+      },
+      "id": 5
+    },
+    {
+      "hero": {
+        "name": "Fernando"
+      },
+      "id": 6
+    },
+    {
+      "hero": {
+        "name": "Fernando"
+      },
+      "id": 7
+    },
+    {
+      "hero": {
+        "name": "renato fujimoto"
+      },
+      "id": 8
+    },
+    {
+      "hero": {
+        "name": ""
+      },
+      "id": 9
+    },
+    {
+      "hero": {
+        "name": ""
+      },
+      "id": 10
+    },
+    {
+      "hero": {
+        "name": ""
+      },
+      "id": 11
+    },
+    {
+      "hero": {
+        "name": "Renato silva"
+      },
+      "id": 12
+    },
+    {
+      "hero": {
+        "name": "Renato pere"
+      },
+      "id": 13
+    }
+  ]
+}
