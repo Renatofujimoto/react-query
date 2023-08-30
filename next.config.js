@@ -1,8 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['rickandmortyapi.com']
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'source.unsplash.com',
+                port: '',
+                pathname: '/featured/**',
+            },
+        ],
     },
-}
+};
 
 module.exports = nextConfig

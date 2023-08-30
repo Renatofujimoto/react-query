@@ -19,7 +19,7 @@ export async function getStaticProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: 'posts',
+    queryKey: 'super-hero',
     queryFn: () => fetchPosts(10),
   })
   return {

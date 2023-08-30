@@ -1,66 +1,53 @@
+/* eslint-disable import/no-duplicates */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-
 
 "use client"
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
-import { usePosts } from '@/app/hooks'
-
-// import { useAddData } from '@/app/hooks/useMutation'
+import { useQueryExample } from '@/app/hooks'
+import { useAddData } from '@/app/hooks'
 
 export function PostList() {
-  const [page, setPage] = useState(0)
+  // const [page, setPage] = useState([])
   const [name, setName] = useState("")
 
 
-  const { data, isLoading, isFetching, } = usePosts(page)
+  const { data, isLoading, isFetching, refetch } = useQueryExample([])
+  const { mutate } = useAddData(name)
 
-  const createData = (hero) => axios.post('http://localhost:4000/superheroes', { hero })
-
-  const mutation = useMutation({
-    mutationFn: createData,
-
-    onSuccess: async () => {
-      setName(name)
-      console.log("Successfully created")
-    },
-    onError: async () => {
-      console.log("Error creating")
-    }
-  }
-  )
-  const errorText = mutation.error ? mutation.error.toString() : null;
 
 
   const handleChange = (e) => {
     e.preventDefault();
-    mutation.mutate({ name })
-
+    mutate({ name })
   }
 
   if (isLoading) return <div>Loading</div>
 
   return (
     <section>
-      <form onSubmit={handleChange}>
-        <ul>
-          <span>Pagina atual: {page + 1}</span>
-          {data?.results?.map((character) => (
-            <li key={character.id}>
-              <p>{character.name}</p>
-              <Image width={100} height={100} src={character.image} alt='imagem do personagem' />
-            </li>
+      <ul>
+        {/* <span>Pagina atual: {page + 1}</span> */}
+
+        <li>
+          {data?.map(hero => (
+            <div key={hero.id}>
+              <Image src={hero.url} width={100} height={100} />
+              <p> {hero.name}</p>
+            </div>
           ))}
-        </ul>
+        </li>
+      </ul>
 
-        <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-        <h5 onClick={() => mutation.reset()}>{errorText}</h5>
+      <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
 
-        <button
+      {/* <button
           onClick={() => setPage((old) => Math.max(old - 1, 0))}
           disabled={page === 0}
         >
@@ -72,15 +59,20 @@ export function PostList() {
           disabled={page === 42}
         >
           Pagina seguinte
-        </button>
+        </button> */}
 
-        <button
-          type='submit'
-        >
-          Adicionar personagem
-        </button>
-        {isFetching ? <span> Loading...</span> : null}{' '}
-      </form>
+      <button
+        onClick={handleChange}
+      >
+        Adicionar personagem
+      </button>
+
+      <button
+        onClick={refetch}
+      >
+        Atualizar
+      </button>
+      {isFetching ? <span> Loading...</span> : null}{' '}
 
 
       <style jsx>{`

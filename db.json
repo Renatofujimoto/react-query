@@ -3,77 +3,25 @@
     {
       "id": 1,
       "name": "Batman",
-      "alterEgo": "Bruce Wayne"
+      "url": "https://source.unsplash.com/featured/"
     },
     {
       "id": 2,
       "name": "Superman",
-      "alterEgo": "Clark Kent"
+      "url": "https://source.unsplash.com/featured/"
     },
     {
       "id": 3,
       "name": "Wonder Woman",
-      "alterEgo": "Princess Diana"
+      "url": "https://source.unsplash.com/featured/"
     },
     {
-      "hero": {
-        "name": "renato"
-      },
+      "name": "Renato fujimoto",
       "id": 4
     },
     {
-      "hero": {
-        "name": "Fernando"
-      },
-      "id": 5
-    },
-    {
-      "hero": {
-        "name": "Fernando"
-      },
+      "name": "Fernando",
       "id": 6
-    },
-    {
-      "hero": {
-        "name": "Fernando"
-      },
-      "id": 7
-    },
-    {
-      "hero": {
-        "name": "renato fujimoto"
-      },
-      "id": 8
-    },
-    {
-      "hero": {
-        "name": ""
-      },
-      "id": 9
-    },
-    {
-      "hero": {
-        "name": ""
-      },
-      "id": 10
-    },
-    {
-      "hero": {
-        "name": ""
-      },
-      "id": 11
-    },
-    {
-      "hero": {
-        "name": "Renato silva"
-      },
-      "id": 12
-    },
-    {
-      "hero": {
-        "name": "Renato pere"
-      },
-      "id": 13
     }
   ]
 }
