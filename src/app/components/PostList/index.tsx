@@ -6,29 +6,26 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { useQueryExample } from '@/app/hooks'
-import { useAddData } from '@/app/hooks'
+import React, { useState } from "react";
+import Image from "next/image";
+import { useQueryExample } from "@/app/hooks";
+import { useAddData } from "@/app/hooks";
 
 export function PostList() {
   // const [page, setPage] = useState([])
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
 
-
-  const { data, isLoading, isFetching, refetch } = useQueryExample([])
-  const { mutate } = useAddData(name)
-
-
+  const { data, isLoading, isFetching, refetch } = useQueryExample();
+  const { mutate } = useAddData();
 
   const handleChange = (e) => {
     e.preventDefault();
-    mutate({ name })
-  }
+    mutate({ name });
+  };
 
-  if (isLoading) return <div>Loading</div>
+  if (isLoading) return <div>Loading</div>;
 
   return (
     <section>
@@ -36,17 +33,19 @@ export function PostList() {
         {/* <span>Pagina atual: {page + 1}</span> */}
 
         <li>
-          {data?.map(hero => (
+          {data?.map((hero) => (
             <div key={hero.id}>
-              <Image src={hero.url} width={100} height={100} />
+              <Image src={hero.url} width={100} height={100} alt={"imagem"} />
               <p> {hero.name}</p>
             </div>
           ))}
         </li>
       </ul>
-
-      <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
       {/* <button
           onClick={() => setPage((old) => Math.max(old - 1, 0))}
           disabled={page === 0}
@@ -60,21 +59,9 @@ export function PostList() {
         >
           Pagina seguinte
         </button> */}
-
-      <button
-        onClick={handleChange}
-      >
-        Adicionar personagem
-      </button>
-
-      <button
-        onClick={refetch}
-      >
-        Atualizar
-      </button>
-      {isFetching ? <span> Loading...</span> : null}{' '}
-
-
+      <button onClick={handleChange}>Adicionar personagem</button>
+      <button onClick={() => refetch()}>Atualizar</button>
+      {isFetching ? <span> Loading...</span> : null}{" "}
       <style jsx>{`
         section {
           padding-bottom: 20px;
@@ -107,12 +94,12 @@ export function PostList() {
           border-style: solid;
           border-width: 6px 4px 0 4px;
           border-color: #ffffff transparent transparent transparent;
-          content: '';
+          content: "";
           height: 0;
           margin-right: 5px;
           width: 0;
         }
       `}</style>
     </section>
-  )
+  );
 }
